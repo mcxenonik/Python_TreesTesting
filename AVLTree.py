@@ -6,6 +6,11 @@ class AVLTree(BinarySearchTree):
         self.rebalance(currentNode)
 
 
+    def _deleteNode(self, root, value):
+        super()._deleteNode(root, value)
+        self.rebalance(value)
+
+
     def getHeight(self, currentNode):
         if currentNode is None:
             return 0
