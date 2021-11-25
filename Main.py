@@ -3,11 +3,14 @@ from random import randint
 from AVLTree import AVLTree
 from BinarySearchTree import BinarySearchTree
 
+from AVLTree2 import AVLTree2
+from BinarySearchTree2 import BinarySearchTree2
+
 # from binarytree import tree, bst, heap, Node
 
 
 if __name__ == "__main__":
-    arr = [randint(1, 1000) for i in range(50)]
+    arr = [randint(1, 1000) for i in range(55)]             # 55
     # arr = [20, 30, 40, 50, 60, 70, 80]
     # arr = [50, 30, 20, 40, 70, 60, 80]
 
@@ -24,13 +27,13 @@ if __name__ == "__main__":
 
     # print("DELETE")
     # bst_tree.deleteNode(50)
-    bst_tree.printBetterTree()
+    # bst_tree.printBetterTree()
     # bst_tree.printLevelorder()
     # bst_tree.printTree()
 
     # print("ADD")
     # bst_tree.addNode(45)
-    bst_tree.printBetterTree()
+    # bst_tree.printBetterTree()
     # bst_tree.printLevelorder()
     # bst_tree.printTree()
 

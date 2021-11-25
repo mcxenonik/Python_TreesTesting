@@ -1,6 +1,6 @@
 from Node import Node
 
-class BinarySearchTree:
+class BinarySearchTree2:
     def __init__(self, values = None):
         self.root = None
 
@@ -150,19 +150,25 @@ class BinarySearchTree:
 #ADD_NODE##############################################################
 
     def addNode(self, value):
-        if (value is not None):
-            self.root = self._addNode(self.root, value)
+        if (value is None):
+            return
+        elif (self.root is None):
+            self.root = Node(value)
+        else:
+            self._addNode(self.root, value)
 
 
     def _addNode(self, currentNode, value):
-        if (currentNode is None):
-            return Node(value)
-        elif (value < currentNode.value):
-            currentNode.left = self._addNode(currentNode.left, value)
+        if (value < currentNode.value):
+            if (currentNode.left == None):
+                currentNode.left = Node(value)
+            else:
+                self._addNode(currentNode.left, value)
         elif (value > currentNode.value):
-            currentNode.right = self._addNode(currentNode.right, value)
-
-        return currentNode
+            if (currentNode.right == None):
+                currentNode.right = Node(value)
+            else:
+                self._addNode(currentNode.right, value)
 
 #FIND_NODE#############################################################
 
@@ -174,14 +180,14 @@ class BinarySearchTree:
 
 
     def _findNode(self, currentNode, value):
-        if (currentNode is None):
-            return None
-        elif (value < currentNode.value):
+        if (value == currentNode.value):
+            return currentNode
+        elif (value < currentNode.value and currentNode.left != None):
             return self._findNode(currentNode.left, value)
-        elif (value > currentNode.value):
+        elif (value > currentNode.value and currentNode.right != None):
             return self._findNode(currentNode.right, value)
         else:
-            return currentNode
+            return None
 
 #DELETE_NODE###########################################################
 
@@ -192,33 +198,24 @@ class BinarySearchTree:
 
     def _deleteNode(self, currentNode, value):
         if (currentNode is None):
-            return None
+            return currentNode
         elif (value < currentNode.value):
             currentNode.left = self._deleteNode(currentNode.left, value)
         elif (value > currentNode.value):
             currentNode.right = self._deleteNode(currentNode.right, value)
-        else:
+        else:  
             if (currentNode.left is None):
                 return currentNode.right
             elif (currentNode.right is None):
                 return currentNode.left
-
-            temp_node = currentNode
-
-            currentNode = self._getMinValueNodeRec(temp_node.right)
-
-            currentNode.right = self._deleteMinValueNode(temp_node.right)
-
-            currentNode.left = temp_node.left
-
-        return currentNode
     
-
-    def _deleteMinValueNode(self, currentNode):
-        if (currentNode.left is None):
-            return currentNode.right
-
-        currentNode.left = self._deleteMinValueNode(currentNode.left)
+            # Get the inorder successor (smallest in the right subtree)
+            temp_node = self._getMinValueNodeIter(currentNode.right)
+    
+            # Copy the inorder successor's content to this node
+            currentNode.value= temp_node.value
+    
+            # Delete the inorder successor
+            currentNode.right = self._deleteNode(currentNode.right, temp_node.value)
 
         return currentNode
-
