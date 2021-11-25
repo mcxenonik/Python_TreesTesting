@@ -3,6 +3,7 @@ from Node import Node
 class BinarySearchTree:
     def __init__(self, values = None):
         self.root = None
+        self.numberOfNodes = 0
 
         if (values is not None):
             for value in values:
@@ -134,6 +135,10 @@ class BinarySearchTree:
             print(root.value)
             self._printInorder(root.right)
 
+
+    def printNumberOfNodes(self):
+        print("NUMBER_OF_NODES:", self.numberOfNodes)
+
 #MINIMUM_VALUE#########################################################
 
     def _getMinValueNodeIter(self, node):
@@ -159,6 +164,7 @@ class BinarySearchTree:
 
     def _addNode(self, currentNode, value):
         if (currentNode is None):
+            self.numberOfNodes += 1
             return Node(value)
         elif (value < currentNode.value):
             currentNode.left = self._addNode(currentNode.left, value)

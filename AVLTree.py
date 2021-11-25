@@ -38,6 +38,9 @@ class AVLTree(BinarySearchTree):
 
 
     def _leftRotate(self, node):
+        if (node.right is None):
+            return None
+
         y = node.right
         t3 = y.left
 
@@ -51,6 +54,9 @@ class AVLTree(BinarySearchTree):
 
 
     def _rightRotate(self, node):
+        if (node.left is None):
+            return None
+
         y = node.left
         t3 = y.right
 
