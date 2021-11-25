@@ -8,6 +8,8 @@ class BinarySearchTree:
             for value in values:
                 self.addNode(value)
 
+        print("TREE GENERATED")
+
 #PRINT_TREE############################################################
 
     def printTree(self):
@@ -93,8 +95,6 @@ class BinarySearchTree:
             currentNode.left = self._addNode(currentNode.left, value)
         elif (value > currentNode.value):
             currentNode.right = self._addNode(currentNode.right, value)
-        else:
-            currentNode.quantity += 1
 
         return currentNode
 
@@ -119,8 +119,6 @@ class BinarySearchTree:
     #             currentNode.right = Node(value)
     #         else:
     #             self._addNode(currentNode.right, value)
-    #     else:
-    #         currentNode.quantity += 1
 
 #FIND_NODE#############################################################
 
@@ -205,7 +203,7 @@ class BinarySearchTree:
     #         # Delete the inorder successor
     #         currentNode.right = self._deleteNode(currentNode.right, temp_node.value)
 
-    #     return node
+    #     return currentNode
 
 
     def _deleteMinValueNode(self, currentNode):

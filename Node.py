@@ -4,4 +4,3 @@ class Node:
         self.left = None
         self.right = None
         self.height = None
-        self.quantity = 1
