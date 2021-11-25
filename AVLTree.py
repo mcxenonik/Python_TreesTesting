@@ -17,14 +17,14 @@ class AVLTree(BinarySearchTree):
 
     def _addNode(self, currentNode, value):
         currentNode = super()._addNode(currentNode, value)
-        currentNode = self.rebalance(currentNode, value)
+        currentNode = self._rebalance(currentNode, value)
 
         return currentNode
 
 
     def _deleteNode(self, currentNode, value):
         currentNode = super()._deleteNode(currentNode, value)
-        currentNode = self.rebalance(currentNode, value)
+        currentNode = self._rebalance(currentNode, value)
 
         return currentNode
 
@@ -43,16 +43,16 @@ class AVLTree(BinarySearchTree):
     #         return 0
 
 
-    def getHeight(self, node):
+    def _getHeight(self, node):
         if (node is not None):
             return node.height
         else:
             return 0
 
 
-    def getBalance(self, node):
+    def _getBalance(self, node):
         if (node is not None):
-            return self.getHeight(node.right) - self.getHeight(node.left)
+            return self._getHeight(node.right) - self._getHeight(node.left)
         else:
             return 0
 
@@ -71,28 +71,28 @@ class AVLTree(BinarySearchTree):
     #         left.right_child = currentNode
 
 
-    def leftRotate(self, node):
+    def _leftRotate(self, node):
         y = node.right
         t3 = y.left
 
         y.left = node
         node.right = t3
 
-        node.height = max(self.getHeight(node.left), self.getHeight(node.right)) + 1
-        y.height = max(self.getHeight(y.left), self.getHeight(y.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
+        y.height = max(self._getHeight(y.left), self._getHeight(y.right)) + 1
 
         return y
 
 
-    def rightRotate(self, node):
+    def _rightRotate(self, node):
         y = node.left
         t3 = y.right
 
         y.right = node
         node.left = t3
 
-        node.height = max(self.getHeight(node.left), self.getHeight(node.right)) + 1
-        y.height = max(self.getHeight(y.left), self.getHeight(y.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
+        y.height = max(self._getHeight(y.left), self._getHeight(y.right)) + 1
 
         return y
 
@@ -112,23 +112,23 @@ class AVLTree(BinarySearchTree):
     #             self.rightRotate(node)
 
 
-    def rebalance(self, currentNode, value):
-        if (currentNode is None):
+    def _rebalance(self, node, value):
+        if (node is None):
             return None
 
-        currentNode.height = max(self.getHeight(currentNode.left), self.getHeight(currentNode.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
 
-        balance = self.getBalance(currentNode)
+        balance = self._getBalance(node)
 
-        if (balance < -1 and value < currentNode.left.value):
-            return self.rightRotate(currentNode)
-        elif (balance > 1 and value > currentNode.right.value):
-            return self.leftRotate(currentNode)
-        elif (balance < -1 and value > currentNode.left.value):
-            currentNode.left = self.leftRotate(currentNode.left)
-            return self.rightRotate(currentNode)
-        elif (balance > 1 and value < currentNode.right.value):
-            currentNode.right = self.rightRotate(currentNode.right)
-            return self.rightRotate(currentNode)
+        if (balance < -1 and value < node.left.value):
+            return self._rightRotate(node)
+        elif (balance > 1 and value > node.right.value):
+            return self._leftRotate(node)
+        elif (balance < -1 and value > node.left.value):
+            node.left = self._leftRotate(node.left)
+            return self._rightRotate(node)
+        elif (balance > 1 and value < node.right.value):
+            node.right = self._rightRotate(node.right)
+            return self._rightRotate(node)
         else:
-            return currentNode
+            return node
