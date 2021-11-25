@@ -1,25 +1,31 @@
 from BinarySearchTree import BinarySearchTree
 
 class AVLTree(BinarySearchTree):
-    def _addNode(self, currentNode, val):
-        super()._addNode(currentNode, val)
+    def __init__(self, values = None):
+        super().__init__(values)
+
+
+    def _addNode(self, currentNode, value):
+        super()._addNode(currentNode, value)
         self.rebalance(currentNode)
 
 
-    def _deleteNode(self, root, value):
-        super()._deleteNode(root, value)
-        self.rebalance(value)
+    def _deleteNode(self, currentNode, value):
+        super()._deleteNode(currentNode, value)
+        self.rebalance(currentNode)
 
 
     def getHeight(self, currentNode):
-        if currentNode is None:
+        if (currentNode is None):
             return 0
+
         return max(self.getHeight(currentNode.left_child), self.getHeight(currentNode.right_child)) + 1
 
 
     def getBalance(self, currentNode):
-        if currentNode is None:
+        if (currentNode is None):
             return 0
+
         return self.getHeight(currentNode.left_child) - self.getHeight(currentNode.right_child)
 
 

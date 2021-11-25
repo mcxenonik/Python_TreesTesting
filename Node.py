@@ -1,8 +1,7 @@
 class Node:
     def __init__(self, value = None):
         self.value = value
-        self.left_child = None
-        self.right_child = None
-        self.quantity = 1
-        self.parent = None
+        self.left = None
+        self.right = None
         self.height = None
+        self.quantity = 1

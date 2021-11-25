@@ -12,11 +12,20 @@ if __name__ == "__main__":
     arr = [50, 30, 20, 40, 70, 60, 80]
 
     bst_tree = BinarySearchTree(arr)
+    bst_tree.printLevelorder()
+    # bst_tree.printInorder()
+    # bst_tree.printTree()
 
-    bst_tree.print_inorder()
+    print("FIND")
+    print(bst_tree.findNode(60).value)
 
     print("DELETE")
-    bst_tree.deleteNode(100)
+    bst_tree.deleteNode(30)
+    bst_tree.printLevelorder()
+    # bst_tree.printInorder()
+    # bst_tree.printTree()
 
-    # bst_tree.print_inorder()
-    bst_tree.print_tree()
+    print("FIND")
+    print(bst_tree.findNode(80).value)
+
+  
