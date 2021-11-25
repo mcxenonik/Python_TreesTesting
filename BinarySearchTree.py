@@ -8,8 +8,6 @@ class BinarySearchTree:
             for value in values:
                 self.addNode(value)
 
-        print("TREE GENERATED")
-
 #PRINT_TREE############################################################
 
     def printTree(self):
