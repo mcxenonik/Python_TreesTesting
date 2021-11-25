@@ -9,6 +9,9 @@ class BinarySearchTree:
                 self.addNode(value)
 
 
+    def __str__(self):
+        return "BinarySearchTree"
+
 #PRINT_TREE############################################################
 
     def printBetterTree(self):

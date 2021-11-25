@@ -5,6 +5,10 @@ class AVLTree(BinarySearchTree):
         super().__init__(values)
 
 
+    def __str__(self):
+        return "AVLTree"
+
+
     def _addNode(self, currentNode, value):
         currentNode = super()._addNode(currentNode, value)
         currentNode = self._rebalance(currentNode, value)
