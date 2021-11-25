@@ -129,6 +129,6 @@ class AVLTree(BinarySearchTree):
             return self._rightRotate(node)
         elif (balance > 1 and value < node.right.value):
             node.right = self._rightRotate(node.right)
-            return self._rightRotate(node)
+            return self._leftRotate(node)
         else:
             return node
