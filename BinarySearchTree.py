@@ -1,17 +1,25 @@
 from Node import Node
 
+
 class BinarySearchTree:
     def __init__(self, values = None):
         self.root = None
         self.numberOfNodes = 0
 
-        if (values is not None):
-            for value in values:
-                self.addNode(value)
+        self.createTree(values)
 
 
     def __str__(self):
         return "BinarySearchTree"
+
+#CREATE_TREE###########################################################
+
+    def createTree(self, values):
+        if (values is not None):
+            for value in values:
+                self.addNode(value)
+
+        return self
 
 #PRINT_TREE############################################################
 

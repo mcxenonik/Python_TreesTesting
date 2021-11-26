@@ -1,12 +1,8 @@
 from random import sample
 
-from Utils import Utils
-
-from AVLTree import AVLTree
 from BinarySearchTree import BinarySearchTree
-
-from AVLTree2 import AVLTree2
-from BinarySearchTree2 import BinarySearchTree2
+from AVLTree import AVLTree
+from Utils import Utils
 
 # from binarytree import tree, bst, heap, Node
 

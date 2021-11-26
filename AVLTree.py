@@ -1,5 +1,6 @@
 from BinarySearchTree import BinarySearchTree
 
+
 class AVLTree(BinarySearchTree):
     def __init__(self, values = None):
         super().__init__(values)
