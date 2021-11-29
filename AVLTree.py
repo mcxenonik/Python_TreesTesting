@@ -1,4 +1,5 @@
 from BinarySearchTree import BinarySearchTree
+from Node import Node
 
 
 class AVLTree(BinarySearchTree):
@@ -40,53 +41,55 @@ class AVLTree(BinarySearchTree):
 
     def _leftRotate(self, node):
         if (node.right is None):
+            # node.right = Node(111)
             return None
 
         y = node.right
-        t3 = y.left
+        t2 = y.left
 
-        y.left = node
-        node.right = t3
+        y.left = node                                                                           # WYKONAJ ROTACJE
+        node.right = t2
 
-        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1          # ZAKTUALIZUJ WYSOKOŚCI
         y.height = max(self._getHeight(y.left), self._getHeight(y.right)) + 1
 
-        return y
+        return y                                                                                # ZWRÓĆ NOWY WĘZEŁ
 
 
     def _rightRotate(self, node):
         if (node.left is None):
+            # node.left = Node(222)
             return None
 
         y = node.left
         t3 = y.right
 
-        y.right = node
+        y.right = node                                                                          # WYKONAJ ROTACJE
         node.left = t3
 
-        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1          # ZAKTUALIZUJ WYSOKOŚCI
         y.height = max(self._getHeight(y.left), self._getHeight(y.right)) + 1
 
-        return y
+        return y                                                                                # ZWRÓĆ NOWY WĘZEŁ
 
 
     def _rebalance(self, node, value):
         if (node is None):
             return None
 
-        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1
+        node.height = max(self._getHeight(node.left), self._getHeight(node.right)) + 1          # ZAKTUALIZUJ WYSOKOŚĆ
 
-        balance = self._getBalance(node)
+        balance = self._getBalance(node)                                                        # ZWRÓĆ WSÓŁCZYNNIK WYWAŻENIA
 
-        if (balance < -1 and value < node.left.value):
+        if (balance < -1 and value < node.left.value):                                          # PRZYPADEK LEFT LEFT
             return self._rightRotate(node)
-        elif (balance > 1 and value > node.right.value):
+        elif (balance > 1 and value > node.right.value):                                        # PRZYPADEK RIGHT RIGHT
             return self._leftRotate(node)
-        elif (balance < -1 and value > node.left.value):
+        elif (balance < -1 and value > node.left.value):                                        # PRZYPADEK LEFT RIGHT
             node.left = self._leftRotate(node.left)
             return self._rightRotate(node)
-        elif (balance > 1 and value < node.right.value):
+        elif (balance > 1 and value < node.right.value):                                        # PRZYPADEK RIGHT LEFT
             node.right = self._rightRotate(node.right)
             return self._leftRotate(node)
         else:
-            return node
+            return node                                                                         # WĘZEŁ WYWAŻONY -> ZWRÓĆ NIEZMIENIONY WĘZEŁ

@@ -11,14 +11,33 @@ class Utils():
     
     
     @staticmethod
-    def generate_list_of_lists(max_number_of_ele=10000, step_number_of_ele=1000, values_range=30000):
-        table = sample(range(1, values_range), max_number_of_ele)
+    def generate_list_of_lists(min_num_of_ele=1000, max_num_of_ele=10000, step_num_of_ele=1000, values_range=None):
+        if (values_range is None):
+            values_range = 5 * max_num_of_ele
+
+        table = sample(range(1, values_range), max_num_of_ele)
         list_of_lists = []
 
-        for number_of_ele in range(step_number_of_ele, len(table) + step_number_of_ele, step_number_of_ele):
-            list_of_lists.append(table[:number_of_ele])
+        for num_of_ele in range(min_num_of_ele, max_num_of_ele + step_num_of_ele, step_num_of_ele):
+            list_of_lists.append(table[:num_of_ele])
 
         return list_of_lists
+
+    
+    def _save_points_to_file(file_name, points):
+        points = [str(point) + "\n" for point in points]
+
+        with open(file_name, "w") as file:
+            file.writelines(points)
+
+
+    def _create_tree(tree, function_name, list_of_elements):
+        if (function_name == "createTree"):
+            created_tree = tree()
+        else:
+            created_tree = tree().createTree(list_of_elements)
+
+        return created_tree
 
 
     def _draw_plot(tree_name, function_name, xpoints, ypoints):
@@ -63,17 +82,18 @@ class Utils():
         ypoints = []
 
         print(tree_name, function_name, "\n--------------")
+        n=0
 
-        if (function_name == "createTree"):
-            created_tree = tree()
-        else:
-            created_tree = tree().createTree(list_of_lists[-1])
-        
+        for list_of_elements in list_of_lists:
+            created_tree = Utils._create_tree(tree, function_name, list_of_lists[-1])
 
-        for list_of_elements in list_of_lists:     
             if (function_name == "createTree"):
                 process_time = Utils._measure_time(created_tree, function, list_of_elements)
             else:
+
+                if (tree_name == "AVLTree" and function_name == "deleteNode" and n == len(list_of_lists) - 2):
+                    break
+                n += 1
                 process_time = 0
                 for element in list_of_elements:
                     process_time += Utils._measure_time(created_tree, function, element)
@@ -83,5 +103,6 @@ class Utils():
 
             print("PROCESS TIME:", format(process_time, '.10f'), "FOR", len(list_of_elements), "ELEMENTS")
 
+        # Utils._save_points_to_file("points_" + tree_name + "_" + function_name + ".txt", ypoints)
         Utils._draw_plot(tree_name, function_name, xpoints, ypoints)
 
