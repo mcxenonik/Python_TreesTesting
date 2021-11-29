@@ -1,10 +1,3 @@
 __pycache__
-All trees_createTree.png
-All trees_deleteNode.png
-All trees_findNode.png
-AVLTree_createTree.png
-AVLTree_deleteNode.png
-AVLTree_findNode.png
-BinarySearchTree_createTree.png
-BinarySearchTree_deleteNode.png
-BinarySearchTree_findNode.png
+Searching_time.py
+tree_draw.py
