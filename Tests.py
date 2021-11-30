@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
 #########################################################
 
-    arr = sample(range(1, 200), 55)             # 55; 140
+    arr = sample(range(1, 200), 15)             # 55; 140
     # arr = list_of_lists[-1]
     # arr = [23, 763, 26, 1, 74, 3, 765, 146, 95, 482, 326, 42, 841, 11, 327, 45, 643, 89]
     # arr = [20, 30, 40, 50, 60, 70, 80]
@@ -32,6 +32,9 @@ if __name__ == "__main__":
     bst_tree = BinarySearchTree(arr)
     bst_tree.printNumberOfNodes()
     bst_tree.printBetterTree()
+    # bst_tree.printTree()
+    # bst_tree.printLevelorder()
+    # bst_tree.printInorder()
 
     # print("FIND")
     # print(bst_tree.findNode(60).value)
@@ -50,6 +53,9 @@ if __name__ == "__main__":
     avl_tree = AVLTree(arr)
     avl_tree.printNumberOfNodes()
     avl_tree.printBetterTree()
+    # avl_tree.printTree()
+    # avl_tree.printLevelorder()
+    # avl_tree.printInorder()
 
     # print("FIND")
     # print(avl_tree.findNode(60).value)
