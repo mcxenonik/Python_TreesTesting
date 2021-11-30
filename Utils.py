@@ -82,18 +82,17 @@ class Utils():
         ypoints = []
 
         print(tree_name, function_name, "\n--------------")
-        n=0
+
+        if (function_name == "findNode"):
+            created_tree = tree().createTree(list_of_lists[-1])
 
         for list_of_elements in list_of_lists:
-            created_tree = Utils._create_tree(tree, function_name, list_of_lists[-1])
+            if (function_name != "findNode"):
+                created_tree = Utils._create_tree(tree, function_name, list_of_lists[-1])
 
             if (function_name == "createTree"):
                 process_time = Utils._measure_time(created_tree, function, list_of_elements)
             else:
-
-                if (tree_name == "AVLTree" and function_name == "deleteNode" and n == len(list_of_lists) - 2):
-                    break
-                n += 1
                 process_time = 0
                 for element in list_of_elements:
                     process_time += Utils._measure_time(created_tree, function, element)

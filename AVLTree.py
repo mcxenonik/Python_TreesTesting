@@ -1,5 +1,4 @@
 from BinarySearchTree import BinarySearchTree
-from Node import Node
 
 
 class AVLTree(BinarySearchTree):
@@ -41,7 +40,6 @@ class AVLTree(BinarySearchTree):
 
     def _leftRotate(self, node):
         if (node.right is None):
-            # node.right = Node(111)
             return None
 
         y = node.right
@@ -58,7 +56,6 @@ class AVLTree(BinarySearchTree):
 
     def _rightRotate(self, node):
         if (node.left is None):
-            # node.left = Node(222)
             return None
 
         y = node.left
